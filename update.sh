@@ -3,6 +3,11 @@
 # The easy script for terminal command 
 # [sudo apt update && sudo apt dist-upgrade && sudo apt upgrade && sudo apt autoremove && sudo apt autoclean]
 
+if ! ping -c 1 8.8.8.8 > /dev/null 2>&1; then
+    printf "\033[31m\nDon't have an internet connectivity! Terminated.\033[0m \n\n"
+    exit
+fi
+
 printf "\033[32m\nFetch the fresh packages from reposirories\033[0m \n"
 sudo apt update 
 
