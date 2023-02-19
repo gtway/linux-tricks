@@ -8,7 +8,7 @@ sudo apt update
 
 forUpdate=`sudo /usr/lib/update-notifier/update-motd-updates-available`
 isFlatpakInstalled=`dpkg-query -W flatpak`
-flatpakRegexp="^(flatpak*)"
+flatpakRegexp="^(flatpak.*)$"
 
 if [ -n "${forUpdate}" ]; then
     printf "\033[32mUpdate has been completed. Look at the packages for upgrade!\033[0m \n\n"
@@ -23,7 +23,7 @@ if [ -n "${forUpdate}" ]; then
     printf "\033[32mUpgrade has been completed.\n"
 fi
 
-if [[ ${isFlatpakInstalled}=~$flatpakRegexp ]]; then
+if [[ ${isFlatpakInstalled} =~ $flatpakRegexp ]]; then
     printf "\n\033[32mUpgrade the Flatpak package manager.\033[0m \n"
     sudo flatpak update
 fi
