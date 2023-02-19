@@ -43,3 +43,4 @@ printf "\033[32mEverything was updated. Enjoy it!\033[0m \n\n"
 if [ -f /var/run/reboot-required ]; then
     printf "\033[31mPlease, reboot your system, it's required!\033[0m \n\n"
 fi
+sudo -k # exit from sudo rights
