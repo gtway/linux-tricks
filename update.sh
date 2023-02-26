@@ -15,7 +15,7 @@ forUpdate=`sudo /usr/lib/update-notifier/update-motd-updates-available`
 isFlatpakInstalled=`dpkg-query -W flatpak`
 flatpakRegexp="^(flatpak.*)$"
 
-if [ -n "${forUpdate}" ]; then
+if [ "${forUpdate}" ]; then
     printf "\033[32mUpdate has been completed. Look at the packages for upgrade!\033[0m \n\n"
     printf "\033[32m" && sudo apt list --upgradable && printf "\033[0m \n\n" 
 
@@ -26,6 +26,8 @@ if [ -n "${forUpdate}" ]; then
     sudo apt upgrade -y
 
     printf "\033[32mUpgrade has been completed.\n"
+else
+    printf "\033[32mUpdate has been completed. There no packages for upgrade!\033[0m \n\n"   
 fi
 
 if [[ ${isFlatpakInstalled} =~ $flatpakRegexp ]]; then
